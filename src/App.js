@@ -11,7 +11,6 @@ import Link from '@material-ui/core/Link';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import qs from 'query-string';
 
-
 const runRequest = async (body) => {
   const response = await fetch(".netlify/functions/search", {
     method: "POST",
@@ -20,7 +19,6 @@ const runRequest = async (body) => {
   });
   return response.json();
 }
-
 
 const buildRequest = (searchTerm) => {
   const body = {
@@ -34,13 +32,11 @@ const buildRequest = (searchTerm) => {
   return body;
 }
 
-
 const genEsLink = id => {
   const url = new URL(`/crawler/_doc/${encodeURIComponent(id)}`, 
     process.env.REACT_APP_ELASTICSEARCH_HOST)
   return url;
 }
-
 
 const ResultItem = ({ data }) => {
   const url = `http://${data._id}`; 
@@ -68,7 +64,6 @@ const ResultItem = ({ data }) => {
   );
 }
 
-
 const extractQueryString = ({ history }) => {
   const { search } = history.location;
   let text = "";
@@ -76,7 +71,6 @@ const extractQueryString = ({ history }) => {
     const parsed = qs.parse(search);
     text = parsed.q || "";
   }
-
   return text;
 }
 
